@@ -1,0 +1,30 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+const blogDir = path.resolve('./src/pages/blog');
+
+const posts = fs
+  .readdirSync(blogDir)
+  .filter(file => file.endsWith('.md'));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CS Heroines Blog</title>
+  </head>
+  <body>
+    <h1>CS Heroines Blog</h1>
+
+    <ul>
+      {posts.map(post => (
+        <li>
+          <a href={`/blog/${post.replace('.md', '')}`}>
+            {post.replace('.md', '')}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>
